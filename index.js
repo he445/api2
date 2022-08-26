@@ -1,13 +1,17 @@
-import { UserRepositoryMongoDb } from './database/repositories/userRepository.js';
-import { CreateUserUseCase } from './services/usecases/createUser.js';
-import { MongoDbConnection } from './database/mongo/connection/connect.js';
-import { FindUserByIdUseCase } from './services/usecases/findUserById.js';
-import { UpdateUserUseCase } from './services/usecases/updateUser.js';
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
 
-const database = new MongoDbConnection();
+const connectDatabase = require('./src/database/database.js');
+const userRoute = require('./src/routes/UserRouter.js');
+const authRoute = require('./auth/auth.route');
+const port = process.env.PORT || 3001;
+const app = express();
 
-await database.ConnectDb().catch((err) => {
-  console.log(err);
+connectDatabase();
+
+app.use(cors());
+app.use('/users', userRoute);
+app.listen(port, () => {
+  console.log(`Servidor rodando na porta ${port}`);
 });
-
-const repository = new UserRepositoryMongoDb();
