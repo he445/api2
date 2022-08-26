@@ -1,56 +1,46 @@
 const userService = require('../services/UserService.js');
+const bcrypt = require('bcryptjs');
+const createUsersController = async (req, res) => {
+  try {
+    const { name, username, email, password, photo } = req.body;
+    const findByEmail = await usersServices.findByEmail(email);
+    const findByUsername = await usersServices.findByUsername(username);
+    const encryptePassword = await bcrypt.hash(password, 10);
 
-const createUserController = async (req, res) => {
-  const { username, name, email, password, avatar } = req.body;
+    if (findByEmail) {
+      res.status(400).send({ message: 'Email already registered' });
+    } else if (findByUsername) {
+      res.status(400).send({ message: 'Username already registered' });
+    } else {
+      const created = await usersServices.createUsersService({
+        name,
+        username,
+        email,
+        password: encryptePassword,
+        photo,
+      });
 
-  if (!username || !name || !email || !password || !avatar) {
-    return res.status(400).send({
-      message:
-        "Alguns campos estão faltando. Os campos são: 'username', 'name', email, 'password' ou 'avatar'",
-    });
+      if (!created) {
+        res.status(400).send({ message: 'Error creating user' });
+      } else {
+        res.status(201).send(created);
+      }
+    }
+  } catch (err) {
+    res.status(400).send({ message: 'Error creating user' });
   }
-
-  const foundUser = await userService.findByEmailUserService(email);
-
-  if (foundUser) {
-    return res.status(400).send({
-      message: 'Usuário já existe!',
-    });
+};
+const getAllUsersController = async (req, res) => {
+  try {
+    const userList = await usersServices.getAllUsersService();
+    if (!userList || userList.length === 0) {
+      res.status(404).send({ message: 'Users not found' });
+    } else {
+      res.status(200).send(userList);
+    }
+  } catch (err) {
+    res.status(404).send({ message: 'Users not found' });
   }
-
-  const user = await userService
-    .createUserService(req.body)
-    .catch((err) => console.log(err, message));
-
-  if (!user) {
-    return res.status(400).send({
-      message: 'Erro ao criar Usuário!',
-    });
-  }
-  const token = authService.generateToken(user.id);
-
-  res.status(201).send({
-    user: {
-      id: user.id,
-      name,
-      username,
-      email,
-      avatar,
-    },
-    token,
-  });
 };
 
-const findAllUserController = async (req, res) => {
-  const users = await userService.findAllUserService();
-
-  if (users.length === 0) {
-    return res.status(400).send({
-      message: 'Não existem usuários cadastrados!',
-    });
-  }
-
-  res.send(users);
-};
-
-module.exports = { createUserController, findAllUserController };
+module.exports = { createUsersController, getAllUsersController };
