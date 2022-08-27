@@ -5,6 +5,7 @@ const cors = require('cors');
 const connectDatabase = require('./src/database/database.js');
 const userRoute = require('./src/routes/UserRouter.js');
 const authRoute = require('./src/routes/auth.route');
+
 const CharacterRoute = require('./src/routes/character.route');
 const port = process.env.PORT || 3001;
 const app = express();
