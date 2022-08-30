@@ -26,14 +26,10 @@ const createCharactersController = async (req, res) => {
 
 const getAllCharactersController = async (req, res) => {
   try {
-    const limit = req.query.limit;
-    const offset = req.query.offset;
-    const characterList = await charactersServices.getAllCharactersService(
-      limit,
-      offset,
-    );
+    const characterList = await charactersServices.findAllCharactersService();
     if (!characterList || characterList.length === 0) {
       res.status(404).send({ message: 'Characters not found' });
+      console.log(characterList);
     } else {
       res.status(200).send(characterList);
     }
@@ -92,7 +88,7 @@ const searchCharactersController = async (req, res) => {
   try {
     const name = req.query.name;
 
-    const searchedChar = await charactersServices.searchCharactersService(name);
+    const searchedChar = await charactersServices.findByNameService(name);
     if (!searchedChar) {
       res.status(404).send({ message: 'Name not Found' });
     } else {

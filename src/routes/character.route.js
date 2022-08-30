@@ -13,7 +13,7 @@ router.post(
   charactersControllers.createCharactersController,
 );
 router.get(
-  '',
+  '/',
   authMiddleware,
   charactersControllers.getAllCharactersController,
 );

@@ -4,7 +4,7 @@ const createCharactersService = async (body) => {
   return await Character.create(body);
 };
 
-const findAllCharactersService = () => Character.find().sort({ _id: -1 });
+const findAllCharactersService = () => Character.find();
 
 const findByNameService = async (name) => {
   return await Character.findOne({ name: name });
