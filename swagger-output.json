@@ -16,7 +16,7 @@
     }
   ],
   "basePath": "/",
-  "schemes": ["http", "https"],
+  "schemes": ["https"],
   "paths": {
     "/auth/login": {
       "post": {
