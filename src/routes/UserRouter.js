@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const userController = require('../controllers/UserController');
-const authMiddleware = require('../middlewares/auth.middleware');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('../../swagger-output.json');
 
-router.post('/create', userController.createUsersController);
-router.get('/', authMiddleware, userController.getAllUsersController);
+router.use('/', swaggerUi.serve);
+router.get('/', swaggerUi.setup(swaggerDocument));
 
 module.exports = router;
