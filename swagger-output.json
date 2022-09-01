@@ -15,8 +15,6 @@
       "description": "API de produção"
     }
   ],
-  "basePath": "/",
-  "schemes": ["https", "http"],
   "paths": {
     "/auth/login": {
       "post": {
