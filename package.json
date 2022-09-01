@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index",
     "dev": "nodemon index",
-    "start-gendoc": "node swagger.js"
+    "swagger-autogen": "node swagger.js"
   },
   "keywords": [],
   "author": "",
