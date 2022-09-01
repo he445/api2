@@ -11,7 +11,7 @@
       "description": "API de teste"
     },
     {
-      "url": "https://rickandmorryapi.herokuapp.com/",
+      "url": "https://aprickandmorty.herokuapp.com/",
       "description": "API de produção"
     }
   ],
