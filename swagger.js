@@ -8,23 +8,13 @@ const doc = {
   },
 
   info: {
-    title: 'API Twitter Clone',
-    description: 'API do clone do Twitter',
+    title: 'API diario',
+    description: 'API para projeto fullstack diario da loucura',
     contact: {
-      email: 'seu@email.com.br',
+      email: 'everton.f.silva0@gmail.com',
     },
     version: '1.0.0',
   },
-  servers: [
-    {
-      url: 'https://aprickandmorty.herokuapp.com/',
-      description: 'API no Heroku',
-    },
-    {
-      url: 'http://localhost:3001',
-      description: 'API local',
-    },
-  ],
 };
 
 const outputFile = './swagger-output.json';

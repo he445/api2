@@ -7,7 +7,7 @@ const authRoute = require('./src/routes/auth.route');
 const swaggerRoute = require('./src/routes/swagger.route');
 
 const CharacterRoute = require('./src/routes/character.route');
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 const app = express();
 
 connectDatabase();
