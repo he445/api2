@@ -4,7 +4,7 @@ const authMiddleware = require('../middlewares/auth.middleware.js');
 
 router.get(
   '/search',
-  authMiddleware,
+
   charactersControllers.searchCharactersController,
 );
 router.post(
@@ -12,16 +12,8 @@ router.post(
   authMiddleware,
   charactersControllers.createCharactersController,
 );
-router.get(
-  '/',
-  authMiddleware,
-  charactersControllers.getAllCharactersController,
-);
-router.get(
-  '/find/:id',
-  authMiddleware,
-  charactersControllers.findByIdController,
-);
+router.get('/', charactersControllers.getAllCharactersController);
+router.get('/find/:id', charactersControllers.findByIdController);
 router.put(
   '/update/:id',
   authMiddleware,

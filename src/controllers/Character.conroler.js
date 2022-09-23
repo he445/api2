@@ -2,16 +2,16 @@ const charactersServices = require('../services/CharacterService.js');
 
 const createCharactersController = async (req, res) => {
   try {
-    const { user, name, imageUrl } = req.body;
-    const findByName = await charactersServices.findByNameService(name);
+    const { user, title, text } = req.body;
+    const findBytitle = await charactersServices.findBytitleService(title);
 
-    if (findByName) {
-      res.status(400).send({ message: 'Name already registered' });
+    if (findBytitle) {
+      res.status(400).send({ message: 'title already registered' });
     } else {
       const created = await charactersServices.createCharactersService({
         user,
-        name,
-        imageUrl,
+        title,
+        text,
       });
       if (!created) {
         res.status(400).send({ message: 'Error creating character' });
@@ -54,10 +54,10 @@ const findByIdController = async (req, res) => {
 const updateCharactersController = async (req, res) => {
   try {
     const id = req.params.id;
-    const { name, imageUrl } = req.body;
+    const { title, text } = req.body;
     const updated = await charactersServices.updateCharactersService(id, {
-      name,
-      imageUrl,
+      title,
+      text,
     });
     if (!updated) {
       res.status(400).send({ message: 'Id not found' });
@@ -86,11 +86,11 @@ const deleteCharacterController = async (req, res) => {
 
 const searchCharactersController = async (req, res) => {
   try {
-    const name = req.query.name;
+    const title = req.query.title;
 
-    const searchedChar = await charactersServices.findByNameService(name);
+    const searchedChar = await charactersServices.findBytitleService(title);
     if (!searchedChar) {
-      res.status(404).send({ message: 'Name not Found' });
+      res.status(404).send({ message: 'title not Found' });
     } else {
       res.status(200).send(searchedChar);
     }
