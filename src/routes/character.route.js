@@ -9,7 +9,7 @@ router.get(
 );
 router.post(
   '/create',
-  authMiddleware,
+
   charactersControllers.createCharactersController,
 );
 router.get('/', charactersControllers.getAllCharactersController);

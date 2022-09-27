@@ -15,6 +15,9 @@ const doc = {
     },
     version: '1.0.0',
   },
+  host: 'localhost:3000',
+  basePath: '/',
+  schemes: ['http', 'https'],
 };
 
 const outputFile = './swagger-output.json';
