@@ -15,9 +15,18 @@ const doc = {
     },
     version: '1.0.0',
   },
-  host: 'localhost:3000',
+  servers: [
+    {
+      url: 'http://localhost:3001/',
+      description: 'API de teste',
+    },
+    {
+      url: 'https://diarioapi.onrender.com/',
+      description: 'API de produção',
+    },
+  ],
   basePath: '/',
-  schemes: ['http', 'https'],
+  schemes: ['https', 'http'],
 };
 
 const outputFile = './swagger-output.json';
