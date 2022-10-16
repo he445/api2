@@ -16,12 +16,8 @@ router.get('/', charactersControllers.getAllCharactersController);
 router.get('/find/:id', charactersControllers.findByIdController);
 router.put(
   '/update/:id',
-  authMiddleware,
+
   charactersControllers.updateCharactersController,
 );
-router.delete(
-  '/delete/:id',
-  authMiddleware,
-  charactersControllers.deleteCharacterController,
-);
+router.delete('/delete/:id', charactersControllers.deleteCharacterController);
 module.exports = router;
