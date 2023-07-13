@@ -1,35 +1,35 @@
 const router = require('express').Router();
-const charactersControllers = require('../controllers/Character.conroler.js');
+const influencerControllers = require('../controllers/Influencer.controller.js');
 const authMiddleware = require('../middlewares/auth.middleware.js');
 
 router.get(
   '/search',
   authMiddleware,
-  charactersControllers.searchCharactersController,
+  influencerControllers.searchInfluencersController,
 );
 router.post(
   '/create',
   authMiddleware,
-  charactersControllers.createCharactersController,
+  influencerControllers.createInfluencerController,
 );
 router.get(
   '/',
   authMiddleware,
-  charactersControllers.getAllCharactersController,
+  influencerControllers.getAllInfluencersController,
 );
 router.get(
   '/find/:id',
   authMiddleware,
-  charactersControllers.findByIdController,
+  influencerControllers.findByIdController,
 );
 router.put(
   '/update/:id',
   authMiddleware,
-  charactersControllers.updateCharactersController,
+  influencerControllers.updateInfluencerController,
 );
 router.delete(
   '/delete/:id',
   authMiddleware,
-  charactersControllers.deleteCharacterController,
+  influencerControllers.deleteInfluencerController,
 );
 module.exports = router;

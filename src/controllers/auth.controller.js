@@ -2,27 +2,29 @@ const bcrypt = require('bcryptjs');
 require('dotenv').config();
 const authService = require('../services/auth.service');
 
-loginController = async (req, res) => {
-  const { email, password } = req.body;
+const loginController = async (req, res) => {
+  try {
+    const { email, password } = req.body;
 
-  const User = await authService.loginService(email);
+    const user = await authService.loginService(email);
 
-  if (!User) {
-    return res.status(400).send({
-      message: 'Usuário não encontrado na base de dados. Tente novamente...',
-    });
+    if (!user) {
+      return res.status(404).send({
+        message: 'User not found in the database. Please try again...',
+      });
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      return res.status(401).send({ message: 'Invalid password! Please try again...' });
+    }
+
+    const token = authService.generateToken(user.id);
+    res.send({ token });
+  } catch (err) {
+    res.status(500).send({ message: `Error logging in: ${err.message}` });
   }
-  console.log('aoba', password, User.password);
-  const isPasswordValid = bcrypt.compareSync(password, User.password);
-  console.log('aoba', password, User.password);
-
-  if (!isPasswordValid) {
-    return res
-      .status(400)
-      .send({ message: 'Senha inválida! Digite novamente...' });
-  }
-  const token = authService.generateToken(User.id);
-  res.send({ token });
 };
 
 module.exports = {

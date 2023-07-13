@@ -19,7 +19,7 @@
     "url": "https://github.com/he445/api2/issues"
   },
   "homepage": "https://github.com/he445/api2#readme",
-  "description": "",
+  "description": "This Api was made for the final project of module 3 FullStack BluedTech.\r In this API contain a CRUD for character and users, it's ablle to conect with frontand and was made with NODEJS, MONGOOSE and express.",
   "dependencies": {
     "and": "^0.0.3",
     "bcryptjs": "^2.4.3",

@@ -6,26 +6,30 @@ module.exports = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader) {
-    return res.status(401).send({ message: 'O token não foi informado!' });
+    return res.status(401).send({ message: 'No token provided!' });
   }
 
   const parts = authHeader.split(' ');
 
   if (parts.length !== 2) {
-    return res.status(401).send({ message: 'Token inválido!' });
+    return res.status(401).send({ message: 'Token error!' });
   }
 
   const [scheme, token] = parts;
 
   if (!/^Bearer$/i.test(scheme)) {
-    return res.status(401).send({ message: 'Token malformatado!' });
+    return res.status(401).send({ message: 'Malformatted token!' });
   }
 
   jwt.verify(token, process.env.SECRET, async (err, decoded) => {
+    if (err) {
+      return res.status(401).send({ message: `Token invalid: ${err.message}` });
+    }
+
     const user = await findByIdUserService(decoded.id);
 
-    if (err || !user || !user.id) {
-      return res.status(401).send({ message: 'Token inválido!' });
+    if (!user) {
+      return res.status(401).send({ message: 'User no longer exists!' });
     }
 
     req.userId = user.id;

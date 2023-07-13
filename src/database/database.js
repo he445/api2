@@ -4,7 +4,7 @@ const connectDatabase = () => {
   console.log('Conectando ao banco de dados...');
 
   mongoose
-    .connect(process.env.MONGO_URI, {
+    .connect( "mongodb+srv://admin:<admin>@api2.7kp4dxk.mongodb.net/?retryWrites=true&w=majority", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
