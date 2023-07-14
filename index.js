@@ -3,10 +3,10 @@ const express = require('express');
 const cors = require('cors');
 const connectDatabase = require('./src/database/database.js');
 const userRoute = require('./src/routes/UserRouter.js');
-const authRoute = require('./src/routes/auth.route');
-const swaggerRoute = require('./src/routes/swagger.route');
+const authRoute = require('./src/routes/auth.route.js');
+const swaggerRoute = require('./src/routes/swagger.route.js');
 
-const InfluencerRoute = require('./src/routes/influencer.route');
+const InfluencerRoute = require('./src/routes/Influencer.route.js');
 const port = process.env.PORT || 3001;
 const app = express();
 
