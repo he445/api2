@@ -1,7 +1,8 @@
 **API de Gerenciamento de Influenciadores**
 
 Esta é a versão 1.0.0 da nossa API, e ela foi gerada automaticamente pelo módulo **swagger-autogen**. A API está hospedada em `localhost:3001` e usa o protocolo `http`.
-
+**Deploy**
+https://influencersapi.onrender.com/api-docs/
 **Rotas**
 
 **1. /auth/login (POST)**
