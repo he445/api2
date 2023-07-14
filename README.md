@@ -1,5 +1,3 @@
-Aqui está uma representação mais amigável da documentação da API Swagger:
-
 **API de Gerenciamento de Influenciadores**
 
 Esta é a versão 1.0.0 da nossa API, e ela foi gerada automaticamente pelo módulo **swagger-autogen**. A API está hospedada em `localhost:3001` e usa o protocolo `http`.
